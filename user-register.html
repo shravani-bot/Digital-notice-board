@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Registration</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script src="assets/app.js"></script>
+
+    <script>
+
+        document.getElementById("app").innerHTML = `
+
+            <div class="card"
+                 style="max-width: 400px;
+                        margin: 50px auto;
+                        padding: 30px;">
+
+                <h2>User Registration</h2>
+
+                <form id="registerForm">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                        style="width:100%;
+                               padding:10px;
+                               margin:8px 0 15px;"
+                    >
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                        style="width:100%;
+                               padding:10px;
+                               margin:8px 0 15px;"
+                    >
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                        style="width:100%;
+                               padding:10px;
+                               margin:8px 0 15px;"
+                    >
+
+                    <label>Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm password"
+                        required
+                        style="width:100%;
+                               padding:10px;
+                               margin:8px 0 20px;"
+                    >
+
+                    <button type="submit">
+                        Register
+                    </button>
+
+                </form>
+
+                <p id="message"></p>
+
+                <p style="margin-top:20px;">
+                    Already have an account?
+                    <a href="user-login.html">
+                        Login
+                    </a>
+                </p>
+
+            </div>
+        `;
+
+
+        document
+        .getElementById("registerForm")
+        .addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const message =
+                document.getElementById("message");
+
+
+            // Check passwords
+
+            if (password !== confirmPassword) {
+
+                message.innerHTML =
+                    "Passwords do not match.";
+
+                message.style.color = "red";
+
+                return;
+            }
+
+
+            // Check password length
+
+            if (password.length < 6) {
+
+                message.innerHTML =
+                    "Password must be at least 6 characters.";
+
+                message.style.color = "red";
+
+                return;
+            }
+
+
+            // Get existing users
+
+            let users =
+                JSON.parse(localStorage.getItem("users")) || [];
+
+
+            // Check if email already exists
+
+            const existingUser =
+                users.find(function(user) {
+
+                    return user.email === email;
+
+                });
+
+
+            if (existingUser) {
+
+                message.innerHTML =
+                    "This email is already registered.";
+
+                message.style.color = "red";
+
+                return;
+            }
+
+
+            // Create new user
+
+            const newUser = {
+
+                name: name,
+                email: email,
+                password: password
+
+            };
+
+
+            // Save user
+
+            users.push(newUser);
+
+            localStorage.setItem(
+                "users",
+                JSON.stringify(users)
+            );
+
+
+            message.innerHTML =
+                "Registration successful!";
+
+            message.style.color = "green";
+
+
+            // Clear form
+
+            document.getElementById("registerForm").reset();
+
+
+            // Go to login page after 1 second
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "user-login.html";
+
+            }, 1000);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+/* User Login Page - Matching Registration Design */
+
+body:has(#loginForm) {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eaf1ff, #f7f9ff, #e8edff);
+    padding: 25px 15px;
+}
+
+/* Login card */
+body:has(#loginForm) #app > .card,
+body:has(#loginForm) .login-card {
+    width: 460px;
+    max-width: 100%;
+    margin: 35px auto;
+    padding: 38px;
+    background: #ffffff;
+    border: 1px solid #edf1fa;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(49, 94, 168, 0.15);
+}
+
+/* Login heading */
+body:has(#loginForm) h1,
+body:has(#loginForm) h2 {
+    text-align: center;
+    color: #2457a6;
+    margin-bottom: 28px;
+}
+
+/* Labels */
+body:has(#loginForm) form label {
+    display: block;
+    color: #193f6b;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 16px 0 7px;
+}
+
+/* Input fields */
+body:has(#loginForm) form input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    margin: 0 0 16px;
+    background: #f8faff;
+    border: 1px solid #d5e0f1;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+body:has(#loginForm) form input:focus {
+    outline: none;
+    border-color: #4778e7;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(71, 120, 231, 0.12);
+}
+
+/* Login button */
+body:has(#loginForm) form button,
+body:has(#loginForm) form .btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3984e8, #7163f2);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+body:has(#loginForm) form button:hover,
+body:has(#loginForm) form .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(71, 100, 220, 0.25);
+}
+
+/* Register link */
+body:has(#loginForm) a {
+    color: #6258e8;
+    font-weight: 700;
+}
+
+body:has(#loginForm) #message,
+body:has(#loginForm) .error {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+@media (max-width: 500px) {
+    body:has(#loginForm) #app > .card,
+    body:has(#loginForm) .login-card {
+        padding: 25px;
+        margin: 15px auto;
+    }
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Users</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><div id="app"></div>
+<script src="assets/app.js"></script>
+<script>
+requireAdmin(); renderShell("Users");
+document.getElementById("content").innerHTML=`
+<div class="card"><h2>Admin Users</h2>
+<table><thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+<tbody><tr><td>Admin</td><td>admin@gmail.com</td><td>Administrator</td></tr></tbody></table>
+</div>`;
+</script></body></html>

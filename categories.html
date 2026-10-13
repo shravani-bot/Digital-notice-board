@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Categories</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><div id="app"></div>
+<script src="assets/app.js"></script>
+<script>
+requireAdmin(); renderShell("Categories");
+document.getElementById("content").innerHTML=`
+<div class="card"><h2>Notice Categories</h2>
+<div class="chips"><span>Academic</span><span>Exam</span><span>Event</span><span>General</span></div>
+<p class="muted">Categories are used when publishing notices.</p></div>`;
+</script></body></html>

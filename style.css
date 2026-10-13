@@ -1,0 +1,222 @@
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#24324a}a{text-decoration:none}.btn{display:inline-block;background:#315ea8;color:white;border:0;border-radius:8px;padding:11px 17px;font-weight:700;cursor:pointer}.btn.small{padding:9px 14px}.btn.full{width:100%;font-size:16px}.btn.secondary{background:#667eea}.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#667eea,#315ea8);padding:20px}.login-card{background:#fff;width:420px;max-width:100%;padding:38px;border-radius:16px;box-shadow:0 15px 45px #0003}.logo{text-align:center;font-size:46px}.login-card h1{text-align:center;margin:5px 0;color:#164d84}.login-card h2{text-align:center;color:#315ea8;margin:0 0 25px}.login-card label{display:block;font-weight:700;margin:14px 0 7px}.login-card input,.login-card select,.login-card textarea{width:100%;padding:12px;border:1px solid #ccd4e0;border-radius:8px;font-size:15px}.back{display:block;text-align:center;margin-top:20px;color:#315ea8}.error{background:#ffe4e4;color:#a90000;padding:10px;border-radius:7px;margin-bottom:15px}.hidden{display:none}.public-header,.topbar{padding:17px 30px;background:#fff;border-bottom:1px solid #e1e7ef;display:flex;justify-content:space-between;align-items:center}.public-header b,.topbar b{font-size:21px;color:#174f86}.public-header span,.topbar span{margin-left:10px;color:#78869a}.public-main{max-width:1100px;margin:auto;padding:35px 20px}.hero{text-align:center;padding:35px}.hero h1{font-size:38px;margin:0 0 10px}.notice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}.notice-card,.card,.empty{background:white;border-radius:14px;padding:24px;box-shadow:0 5px 20px #26364d12}.notice-card h2{margin:10px 0}.notice-card p{line-height:1.6;color:#5d6878}.badge,.chips span{display:inline-block;background:#e8efff;color:#315ea8;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700}.layout{display:flex;min-height:calc(100vh - 70px)}aside{width:230px;background:#193f6b;padding:25px 15px}aside a{display:block;color:white;padding:12px 14px;border-radius:7px;margin-bottom:5px}aside a:hover{background:#315ea8}main{flex:1;padding:30px;max-width:1200px}.page-title{margin-bottom:22px}.page-title h1{margin:0}.welcome h2{margin-top:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:20px 0}.stat{background:#fff;border-radius:14px;padding:24px;text-align:center;box-shadow:0 5px 20px #26364d12}.stat b{display:block;font-size:32px;color:#315ea8}.stat span{color:#718096}.quick{margin-top:20px}.quick h2{margin-top:0}.page-head{display:flex;justify-content:space-between;align-items:center}.notice-row{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #e4e8ef;padding:18px 0}.notice-row:last-child{border-bottom:0}.notice-row h3{margin:0 0 7px}.notice-row p{margin:5px 0;color:#657184}.danger{background:#d84c4c;color:#fff;border:0;border-radius:7px;padding:8px 12px;height:max-content;cursor:pointer}.chips{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e1e6ee}.muted{color:#738095}.empty{text-align:center;margin-top:20px}@media(max-width:700px){.layout{display:block}aside{width:100%}aside a{display:inline-block}.stats{grid-template-columns:1fr}.topbar,.public-header{padding:14px;gap:10px}.public-header span,.topbar span{display:none}main{padding:18px}} /* Form Fix */
+.card form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.card form label {
+    display: block;
+    font-weight: 700;
+    margin: 15px 0 7px;
+}
+
+.card form input,
+.card form select,
+.card form textarea {
+    width: 100%;
+    display: block;
+    padding: 12px;
+    border: 1px solid #ccd4e0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.card form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.card form .btn {
+    margin-top: 18px;
+}
+/* Attractive User Registration Page */
+
+body:has(#registerForm),
+body:has(#registrationForm) {
+    background: linear-gradient(135deg, #eef5ff, #f8faff, #e8efff);
+    min-height: 100vh;
+}
+
+/* Registration card */
+body:has(#registerForm) .login-card,
+body:has(#registrationForm) .login-card {
+    width: 460px;
+    max-width: 95%;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(49, 94, 168, 0.16);
+}
+
+/* Heading */
+body:has(#registerForm) .login-card h1,
+body:has(#registrationForm) .login-card h1 {
+    color: #2457a6;
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+/* Labels */
+body:has(#registerForm) .login-card label,
+body:has(#registrationForm) .login-card label {
+    color: #193f6b;
+    font-size: 15px;
+    margin: 17px 0 8px;
+}
+
+/* Input fields */
+body:has(#registerForm) .login-card input,
+body:has(#registrationForm) .login-card input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d5e0f1;
+    border-radius: 10px;
+    background: #fbfdff;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+body:has(#registerForm) .login-card input:focus,
+body:has(#registrationForm) .login-card input:focus {
+    outline: none;
+    border-color: #4778e7;
+    box-shadow: 0 0 0 4px rgba(71, 120, 231, 0.12);
+    background: #ffffff;
+}
+
+/* Register button */
+body:has(#registerForm) .login-card .btn,
+body:has(#registrationForm) .login-card .btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3984e8, #7163f2);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+body:has(#registerForm) .login-card .btn:hover,
+body:has(#registrationForm) .login-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(71, 100, 220, 0.25);
+}
+
+/* Login link */
+body:has(#registerForm) .login-card a,
+body:has(#registrationForm) .login-card a {
+    color: #6258e8;
+    font-weight: bold;
+}
+
+body:has(#registerForm) .login-card .back,
+body:has(#registrationForm) .login-card .back {
+    color: #64748b;
+    margin-top: 22px;
+}
+/* Attractive User Registration Page */
+
+body:has(#registerForm) {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eaf1ff, #f7f9ff, #e8edff);
+    padding: 25px 15px;
+}
+
+/* Registration card */
+body:has(#registerForm) #app > .card {
+    max-width: 460px !important;
+    margin: 35px auto !important;
+    padding: 38px !important;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(49, 94, 168, 0.15);
+    border: 1px solid #edf1fa;
+}
+
+/* Heading */
+body:has(#registerForm) #app > .card h2 {
+    text-align: center;
+    color: #2457a6;
+    font-size: 28px;
+    margin: 0 0 28px;
+}
+
+/* Form labels */
+body:has(#registerForm) #registerForm label {
+    display: block;
+    color: #193f6b;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 16px 0 7px;
+}
+
+/* Input fields */
+body:has(#registerForm) #registerForm input {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 13px 14px !important;
+    margin: 0 0 15px !important;
+    background: #f8faff;
+    border: 1px solid #d5e0f1;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+body:has(#registerForm) #registerForm input:focus {
+    outline: none;
+    border-color: #4778e7;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(71, 120, 231, 0.12);
+}
+
+/* Register button */
+body:has(#registerForm) #registerForm button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3984e8, #7163f2);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+body:has(#registerForm) #registerForm button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(71, 100, 220, 0.25);
+}
+
+/* Login link */
+body:has(#registerForm) #app > .card > p:last-child {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}
+
+body:has(#registerForm) #app > .card > p:last-child a {
+    color: #6258e8;
+    font-weight: 700;
+}
+
+body:has(#registerForm) #message {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+@media (max-width: 500px) {
+    body:has(#registerForm) #app > .card {
+        padding: 25px !important;
+        margin: 15px auto !important;
+    }
+}

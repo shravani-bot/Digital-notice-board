@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Notice Board</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .public-header {
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .public-header nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .public-header nav a {
+            margin: 0;
+        }
+
+        .home-hero {
+            background: linear-gradient(135deg, #315ea8, #667eea);
+            color: white;
+            padding: 55px 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .home-hero h1 {
+            font-size: 38px;
+            margin: 0 0 15px;
+        }
+
+        .home-hero p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .home-hero .btn {
+            background: white;
+            color: #315ea8;
+            margin-top: 12px;
+        }
+
+        .home-section-title {
+            margin: 25px 0;
+            color: #174f86;
+        }
+
+        .home-footer {
+            text-align: center;
+            padding: 22px;
+            background: #193f6b;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .home-footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .home-hero h1 {
+                font-size: 28px;
+            }
+
+            .home-hero {
+                padding: 35px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="public-header">
+
+        <div>
+            <b>📢 Digital Notice Board</b>
+            <span>College Notice Portal</span>
+        </div>
+
+        <nav id="userNavigation">
+            <a href="index.html" class="btn small">Home</a>
+            <a href="categories.html" class="btn small">Categories</a>
+            <a href="user-login.html" class="btn small">Login</a>
+            <a href="user-register.html" class="btn small">Register</a>
+            <a href="admin-login.html" class="btn small">Admin Login</a>
+        </nav>
+
+    </header>
+
+    <!-- Main Content -->
+    <main class="public-main">
+
+        <section class="home-hero">
+
+            <h1>Welcome to Digital Notice Board 📢</h1>
+
+            <p>
+                Your one-stop destination for college announcements,
+                examination updates, events and important information.
+            </p>
+
+            <p id="welcomeUser"></p>
+
+            <a href="categories.html" class="btn">
+                Explore Notices
+            </a>
+
+        </section>
+
+        <!-- Latest Notices -->
+        <section>
+
+            <h2 class="home-section-title">
+                📌 Latest College Notices
+            </h2>
+
+            <div id="publicNotices" class="notice-grid"></div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+        <p><strong>📢 Digital Notice Board</strong></p>
+        <p>Making college announcements simple and accessible.</p>
+        <p>© 2026 Digital Notice Board | All Rights Reserved</p>
+    </footer>
+
+    <!-- Existing JavaScript file -->
+    <script src="assets/app.js"></script>
+
+    <script>
+        // Check whether a user is logged in
+        let user = null;
+
+        try {
+            user = JSON.parse(
+                localStorage.getItem("loggedInUser") || "null"
+            );
+        } catch (error) {
+            user = null;
+        }
+
+        const welcomeUser = document.getElementById("welcomeUser");
+        const userNavigation = document.getElementById("userNavigation");
+
+        // Update navigation for logged-in users
+        if (user) {
+            welcomeUser.textContent =
+                "Welcome back, " + (user.name || "User") + "!";
+
+            userNavigation.innerHTML = `
+                <a href="index.html" class="btn small">Home</a>
+                <a href="categories.html" class="btn small">Categories</a>
+                <span class="btn small">
+                    Hello, ${escapeHtml(user.name || "User")}
+                </span>
+                <button class="btn small" id="userLogout">
+                    Logout
+                </button>
+                <a href="admin-login.html" class="btn small">
+                    Admin Login
+                </a>
+            `;
+
+            document.getElementById("userLogout")
+                .addEventListener("click", function () {
+                    localStorage.removeItem("loggedInUser");
+                    window.location.href = "index.html";
+                });
+        }
+
+        // Display notices published by the admin
+        renderPublicNotices();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Login - Digital Notice Board</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="login-page">
+<div class="login-card">
+  <div class="logo">📢</div>
+  <h1>Digital Notice Board</h1>
+  <h2>Admin Login</h2>
+  <div id="loginError" class="error hidden"></div>
+  <form id="loginForm">
+    <label>Email</label>
+    <input id="email" type="email" placeholder="Enter admin email" required>
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Enter password" required>
+    <button class="btn full" type="submit">Login</button>
+  </form>
+  <a class="back" href="index.html">← Back to Home</a>
+</div>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const ok = login(document.getElementById("email").value.trim(),
+                   document.getElementById("password").value);
+  if(ok) location.href="dashboard.html";
+  else {
+    const box=document.getElementById("loginError");
+    box.textContent="Invalid email or password.";
+    box.classList.remove("hidden");
+  }
+});
+</script>
+</body>
+</html>

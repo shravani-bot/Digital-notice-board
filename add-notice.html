@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Add Notice</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><div id="app"></div>
+<script src="assets/app.js"></script>
+<script>
+requireAdmin(); renderShell("Add Notice");
+document.getElementById("content").innerHTML = `
+<div class="card">
+<h2>Add New Notice</h2>
+<form id="noticeForm">
+<label>Notice Title</label><input id="title" required>
+<label>Category</label><select id="category"><option>Academic</option><option>Exam</option><option>Event</option><option>General</option></select>
+<label>Notice Date</label><input id="date" type="date" required>
+<label>Description</label><textarea id="description" rows="6" required></textarea>
+<button class="btn" type="submit">Publish Notice</button>
+</form></div>`;
+document.getElementById("noticeForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ addNotice({
+  title:title.value, category:category.value, date:date.value,
+  description:description.value
+ });
+ alert("Notice published successfully.");
+ location.href="manage-notices.html";
+});
+</script></body></html>

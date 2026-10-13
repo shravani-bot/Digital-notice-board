@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Home - Digital Notice Board</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .user-hero {
+            background: linear-gradient(135deg, #315ea8, #667eea);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .user-hero h1 {
+            margin-top: 0;
+            font-size: 32px;
+        }
+
+        .user-hero p {
+            line-height: 1.7;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .user-actions a {
+            background: white;
+            color: #315ea8;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px #26364d12;
+        }
+
+        .profile-card h2 {
+            color: #174f86;
+            margin-top: 0;
+        }
+
+        .user-notice-title {
+            color: #174f86;
+            margin: 30px 0 20px;
+        }
+
+        .user-footer {
+            text-align: center;
+            background: #193f6b;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .user-hero {
+                padding: 25px;
+            }
+
+            .user-hero h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="public-header">
+
+        <div>
+            <b>📢 Digital Notice Board</b>
+            <span>User Portal</span>
+        </div>
+
+        
+<nav style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+
+    <a href="user-home.html" class="btn small">Home</a>
+
+    <a href="categories.html" class="btn small">
+        Categories
+    </a>
+
+    <a href="user-register.html" class="btn small">
+        Register
+    </a>
+
+    <a href="user-login.html" class="btn small">
+        Login
+    </a>
+
+    <button id="logoutBtn" class="btn small">
+        Logout
+    </button>
+
+</nav>
+
+
+    </header>
+
+    <main class="public-main">
+
+        <!-- Welcome Section -->
+        <section class="user-hero">
+
+            <h1 id="welcomeHeading">Welcome!</h1>
+
+            <p>
+                Welcome to your Digital Notice Board.
+                Find college announcements, examination updates,
+                events and other important information in one place.
+            </p>
+
+            <div class="user-actions">
+
+                <a href="#latestNotices" class="btn">
+                    View Latest Notices
+                </a>
+
+                <a href="categories.html" class="btn">
+                    Browse Categories
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- User Profile -->
+        <section class="profile-card">
+
+            <h2>👤 My Profile</h2>
+
+            <p>
+                <strong>Full Name:</strong>
+                <span id="userName"></span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="userEmail"></span>
+            </p>
+
+        </section>
+
+        <!-- Notices -->
+        <section id="latestNotices">
+
+            <h2 class="user-notice-title">
+                📌 Latest College Notices
+            </h2>
+
+            <div id="publicNotices" class="notice-grid"></div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="user-footer">
+        <p>Digital Notice Board | College Notice Portal</p>
+        <p>© 2026 All Rights Reserved</p>
+    </footer>
+
+    <!-- Existing JavaScript -->
+    <script src="assets/app.js"></script>
+
+    <script>
+        // Check whether a user is logged in
+        let user = null;
+
+        try {
+            user = JSON.parse(
+                localStorage.getItem("loggedInUser") || "null"
+            );
+        } catch (error) {
+            user = null;
+        }
+
+        // If no user is logged in, open the login page
+        if (!user || !user.email) {
+
+            window.location.replace("user-login.html");
+
+        } else {
+
+            // Display the user's details
+            document.getElementById("welcomeHeading").textContent =
+                "Welcome back, " + user.name + "! 👋";
+
+            document.getElementById("userName").textContent =
+                user.name;
+
+            document.getElementById("userEmail").textContent =
+                user.email;
+
+            // Display notices published by the admin
+            renderPublicNotices();
+        }
+
+        // Logout
+        document.getElementById("logoutBtn")
+            .addEventListener("click", function () {
+
+                localStorage.removeItem("loggedInUser");
+
+                window.location.href = "user-login.html";
+            });
+    </script>
+
+</body>
+</html>

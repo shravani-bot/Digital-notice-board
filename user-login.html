@@ -1,0 +1,198 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #f8faff);
+            color: #174f86;
+        }
+
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .register-card {
+            background: white;
+            width: 460px;
+            max-width: 100%;
+            padding: 36px 38px;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(49, 94, 168, 0.13);
+        }
+
+        .register-card h1 {
+            text-align: center;
+            color: #315ea8;
+            font-size: 28px;
+            margin: 0 0 28px;
+        }
+
+        .register-card label {
+            display: block;
+            color: #174f86;
+            font-weight: 700;
+            margin: 17px 0 8px;
+        }
+
+        .register-card input {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cfdbf5;
+            border-radius: 10px;
+            background: #f8faff;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .register-card input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+        }
+
+        .register-card button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #3984ee, #7060f5);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-card button:hover {
+            opacity: 0.92;
+        }
+
+        .register-card .bottom-link {
+            text-align: center;
+            margin: 20px 0 0;
+            color: #61728e;
+        }
+
+        .register-card a {
+            color: #5545ed;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-card a:hover {
+            text-decoration: underline;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <div class="register-card">
+
+            <h1>User Login</h1>
+
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p id="message"></p>
+
+            <p class="bottom-link">
+                Don't have an account?
+                <a href="user-register.html">Register</a>
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email")
+                    .value.trim();
+                const password = document.getElementById("password")
+                    .value;
+                const message = document.getElementById("message");
+
+                let users = [];
+
+                try {
+                    users = JSON.parse(
+                        localStorage.getItem("users") || "[]"
+                    );
+                } catch (error) {
+                    users = [];
+                }
+
+                const user = users.find(function(item) {
+                    return item.email.toLowerCase() ===
+                               email.toLowerCase()
+                        && item.password === password;
+                });
+
+                if (!user) {
+                    message.textContent = "Invalid email or password.";
+                    message.style.color = "red";
+                    return;
+                }
+
+                localStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(user)
+                );
+
+                window.location.href = "user-home.html";
+            });
+    </script>
+
+</body>
+</html>
+```
