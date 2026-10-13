@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Manage Notices</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><div id="app"></div>
-<script src="assets/app.js"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manage Notices</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="app.js"></script>
 <script>
-requireAdmin(); renderShell("Manage Notices");
-const notices=getNotices();
-document.getElementById("content").innerHTML=`
-<div class="card"><div class="page-head"><h2>All Notices</h2><a class="btn" href="add-notice.html">+ Add Notice</a></div>
-<div id="list"></div></div>`;
-const list=document.getElementById("list");
-if(!notices.length) list.innerHTML='<p class="muted">No notices available.</p>';
-else notices.forEach((n,i)=>{
- const el=document.createElement("div"); el.className="notice-row";
- el.innerHTML=`<div><h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.description)}</p><small>${escapeHtml(n.category)} • ${escapeHtml(n.date)}</small></div><button class="danger" onclick="deleteNotice(${i})">Delete</button>`;
- list.appendChild(el);
-});
-function deleteNotice(i){ if(confirm("Delete this notice?")){removeNotice(i); location.reload();}}
-</script></body></html>
+requireAdmin(); 
+renderShell("Manage Notices");
+
+const notices = getNotices();
+const container = document.getElementById("content") || document.getElementById("app");
+
+if (container) {
+    container.innerHTML = `
+        <div class="card">
+            <div class="page-head">
+                <h2>All Notices</h2>
+                <a class="btn" href="add-notice.html">+ Add Notice</a>
+            </div>
+            <div id="list"></div>
+        </div>
+    `;
+}
+
+const list = document.getElementById("list");
+if (list) {
+    if (!notices.length) {
+        list.innerHTML = '<p class="muted">No notices available.</p>';
+    } else {
+        notices.forEach((n, i) => {
+            const el = document.createElement("div"); 
+            el.className = "notice-row";
+            el.innerHTML = `
+                <div>
+                    <h3>${escapeHtml(n.title)}</h3>
+                    <p>${escapeHtml(n.description)}</p>
+                    <small>${escapeHtml(n.category)} • ${escapeHtml(n.date)}</small>
+                </div>
+                <button class="danger" onclick="deleteNotice(${i})">Delete</button>
+            `;
+            list.appendChild(el);
+        });
+    }
+}
+
+function deleteNotice(i) {
+    if (confirm("Delete this notice?")) {
+        removeNotice(i); 
+        location.reload();
+    }
+}
+</script>
+</body>
+</html>
